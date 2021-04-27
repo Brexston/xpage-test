@@ -21,95 +21,19 @@
 
 
 				<dropdown class="my-dropdown-toggle"
-					:options="arrayOfObjects" 
-					:selected="object" 
+					:options="tags" 
+					:selected="currentTag" 
 					v-on:updateOption="methodToRunOnSelect" 
 					:placeholder="'Select an Item'"
 					:closeOnOutsideClick="boolean">
 				</dropdown>
 			</div>
 			<div class="news__list news-list">
-				<div class="news-list__item">
-					<img class="news-list__img" src="../assets/img/bg1.png" alt="title">
-					<div class="news-list__info">
-						<a class="news-list__section" href="#">Медицина</a>
-						<a class="news-list__section" href="#">Общество</a>
-						<div class="news-list__date">02/02/2021</div>
-					</div>
-					<router-link to="/news/1" class="news-list__title">Благодаря поддержке предпринимателей. Златоустовские поликлиники оснастили холодильными установками для хранения вакцины</router-link>
-					<a class="news-list__сross" href="#" >
-						<img src="../assets/img/cross-icon.svg" alt="Перейти">
-					</a>
-				</div>
-				<div class="news-list__item">
-					<img class="news-list__img" src="../assets/img/bg2.png" alt="title">
-					<div class="news-list__info">
-						<a class="news-list__section" href="#">Медицина</a>
-						<div class="news-list__date">29/01/2021</div>
-					</div>
-					<router-link to="/news/2" class="news-list__title">Госпитальная база закрыта, учреждение вернётся в «доковидный» режим после дезинфекции.  Роддом Златоуста вновь откроет свои двери 8 февраля</router-link>
-					<a class="news-list__сross" href="#" >
-						<img src="../assets/img/cross-icon.svg" alt="Перейти">
-					</a>
-				</div>
-				<div class="news-list__item">
-					<img class="news-list__img" src="../assets/img/bg3.png" alt="title">
-					<div class="news-list__info">
-						<a class="news-list__section" href="#">Коммуналка</a>
-						<div class="news-list__date">29/01/2021</div>
-					</div>
-					<a class="news-list__title" href="#">Осторожно, сосульки! Оттепель на этой неделе привела к тому, что на крышах многих домов образовались опасные ледяные наросты</a>
-					<a class="news-list__сross" href="#" >
-						<img src="../assets/img/cross-icon.svg" alt="Перейти">
-					</a>
-				</div>
-				<div class="news-list__item">
-					<img class="news-list__img" src="../assets/img/bg4.png" alt="title">
-					<div class="news-list__info">
-						<a class="news-list__section" href="#">Политика</a>
-						<div class="news-list__date">29/01/2021</div>
-					</div>
-					<a class="news-list__title" href="#">В четыре раза меньше вопросов, чем обычно. В Златоусте прошло первое в 2021-м году Собрание депутатов</a>
-					<a class="news-list__сross" href="#" >
-						<img src="../assets/img/cross-icon.svg" alt="Перейти">
-					</a>
-				</div>
-				<div class="news-list__item">
-					<img class="news-list__img" src="../assets/img/bg5.png" alt="title">
-					<div class="news-list__info">
-						<a class="news-list__section" href="#">Коммуналка</a>
-						<div class="news-list__date">29/01/2021</div>
-					</div>
-					<a class="news-list__title" href="#">В Златоусте сотрудники теротдела проверят магазин, из которого выбрасывали строительный мусор на контейнерную площадку</a>
-					<a class="news-list__сross" href="#" >
-						<img src="../assets/img/cross-icon.svg" alt="Перейти">
-					</a>
-				</div>
-				<div class="news-list__item">
-					<img class="news-list__img" src="../assets/img/bg6.png" alt="title">
-					<div class="news-list__info">
-						<a class="news-list__section" href="#">Общество</a>
-						<div class="news-list__date">29/01/2021</div>
-					</div>
-					<a class="news-list__title" href="#">ДЧ: Первое Собрание депутатов 2021 года: планируется работа на весь год</a>
-					<a class="news-list__сross" href="#" >
-						<img src="../assets/img/cross-icon.svg" alt="Перейти">
-					</a>
-				</div>
-				<div class="news-list__item main">
-					<img class="news-list__img" src="../assets/img/bg6.png" alt="title">
-					<div class="news-list__wrap">
-						<div class="news-list__info">
-							<a class="news-list__section" href="#">Общество</a>
-							<div class="news-list__date">29/01/2021</div>
-						</div>
-						<a class="news-list__title" href="#">Госпитальная база закрыта, учреждение вернётся в «доковидный» режим после дезинфекции.  Роддом Златоуста вновь откроет свои двери 8 февраля</a>
-						<a class="news-list__description" href="#">Ещё одна главная новость дня — с 8 февраля златоустовский роддом возвращается к привычному формату работы. Госпитальную базу для лечения больных коронавирусной инфекцией переводят...</a>
-						<a class="news-list__сross" href="#" >
-							<img src="../assets/img/cross-icon.svg" alt="Перейти">
-						</a>
-					</div>
-				</div>
+
+				<NewsListItem v-for="(newsItem, index) of news" 
+					:key="newsItem.id"
+					v-bind:item="newsItem"
+					v-bind:index="index"/>
 			</div>
 
 			<Pagination/>
@@ -121,13 +45,15 @@
 
 <script>
 import Pagination from '@/components/Pagination.vue'
+import NewsListItem from '@/components/NewsListItem.vue'
+
 import dropdown from 'vue-dropdowns';
 import { DatePicker } from 'v-calendar';
 
 export default {
 	data() {
 		return {
-			arrayOfObjects: [
+			tags: [
 				{
 					name: 'Медицина',
 
@@ -136,10 +62,66 @@ export default {
 					name: 'Общество',
 				}
 			],
-			object: {
+			currentTag: {
 				name: 'Выбрать рубрику',
 			},
 			date: new Date(),
+			news: [
+				{
+					id: 1,
+					tags: ['Медицина', 'Общество'],
+					date: '02/02/2021',
+					title: 'Благодаря поддержке предпринимателей. Златоустовские поликлиники оснастили холодильными установками для хранения вакцины',
+					imageUrl: '/bg1.png'
+				},
+				{
+					id: 2,
+					tags: ['Медицина'],
+					date: '02/02/2021',
+					title: 'Госпитальная база закрыта, учреждение вернётся в «доковидный» режим после дезинфекции.  Роддом Златоуста вновь откроет свои двери 8 февраля',
+					imageUrl: '/bg2.png'
+				},
+				{
+					id: 3,
+					tags: ['Общество'],
+					date: '02/02/2021',
+					title: 'Осторожно, сосульки! Оттепель на этой неделе привела к тому, что на крышах многих домов образовались опасные ледяные наросты',
+					imageUrl: '/bg3.png'
+				},
+				{
+					id: 4,
+					tags: ['Общество'],
+					date: '02/02/2021',
+					title: 'Осторожно, сосульки! Оттепель на этой неделе привела к тому, что на крышах многих домов образовались опасные ледяные наросты',
+					imageUrl: '/bg3.png'
+				}
+,
+				{
+					id: 5,
+					tags: ['Общество'],
+					date: '02/02/2021',
+					title: 'Осторожно, сосульки! Оттепель на этой неделе привела к тому, что на крышах многих домов образовались опасные ледяные наросты',
+					imageUrl: '/bg3.png'
+				}
+,
+				{
+					id: 6,
+					tags: ['Общество'],
+					date: '02/02/2021',
+					title: 'Осторожно, сосульки! Оттепель на этой неделе привела к тому, что на крышах многих домов образовались опасные ледяные наросты',
+					imageUrl: '/bg3.png'
+				}
+,
+				{
+					id: 7,
+					tags: ['Общество'],
+					date: '02/02/2021',
+					title: 'Осторожно, сосульки! Оттепель на этой неделе привела к тому, что на крышах многих домов образовались опасные ледяные наросты',
+					imageUrl: '/bg3.png'
+				}
+
+
+			]
 		}
 	},
 	name: 'News',
@@ -148,6 +130,7 @@ export default {
 	},
 	components: {
 		Pagination,
+		NewsListItem,
 		dropdown,
 		DatePicker,
 	},
