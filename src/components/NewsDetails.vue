@@ -2,6 +2,7 @@
 	<section class="news-item">
 		<div class="container">
 			<div class="news-item__title">
+				{{ $route.params.id }}
 				Госпитальная база закрыта, учреждение вернётся в «доковидный» режим после дезинфекции.  Роддом Златоуста вновь откроет свои двери 8 февраля
 			</div>
 			<div class="news-item__breadcrumbs breadcrumbs">
@@ -68,7 +69,7 @@
 
 <script>
 export default {
-  name: 'NewsItem',
+  name: 'NewsDetails',
 }
 </script>
 

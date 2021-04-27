@@ -36,7 +36,7 @@
 						<a class="news-list__section" href="#">Общество</a>
 						<div class="news-list__date">02/02/2021</div>
 					</div>
-					<a class="news-list__title" href="#">Благодаря поддержке предпринимателей. Златоустовские поликлиники оснастили холодильными установками для хранения вакцины</a>
+					<router-link to="/news/1" class="news-list__title">Благодаря поддержке предпринимателей. Златоустовские поликлиники оснастили холодильными установками для хранения вакцины</router-link>
 					<a class="news-list__сross" href="#" >
 						<img src="../assets/img/cross-icon.svg" alt="Перейти">
 					</a>
@@ -47,7 +47,7 @@
 						<a class="news-list__section" href="#">Медицина</a>
 						<div class="news-list__date">29/01/2021</div>
 					</div>
-					<a class="news-list__title" href="#">Госпитальная база закрыта, учреждение вернётся в «доковидный» режим после дезинфекции.  Роддом Златоуста вновь откроет свои двери 8 февраля</a>
+					<router-link to="/news/2" class="news-list__title">Госпитальная база закрыта, учреждение вернётся в «доковидный» режим после дезинфекции.  Роддом Златоуста вновь откроет свои двери 8 февраля</router-link>
 					<a class="news-list__сross" href="#" >
 						<img src="../assets/img/cross-icon.svg" alt="Перейти">
 					</a>
@@ -148,7 +148,7 @@ export default {
 	},
 	components: {
 		Pagination,
-		'dropdown': dropdown,
+		dropdown,
 		DatePicker,
 	},
 	methods: {
