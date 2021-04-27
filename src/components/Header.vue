@@ -27,9 +27,23 @@
 						<a class="nav__link" href="#">Еще</a>
 					</li>
 				</ul>
-				<div class="header-menu__soc social">
+				<div class="header-menu__social social">
 					<div class="social__title">Подписывайтесь на нас:</div>
-					<a href="#" target="blank" class="social__item"></a>
+					<a href="#" target="blank" class="social__item">
+						<img src="../assets/img/yt-icon.svg" alt="Youtube">
+					</a>
+					<a href="#" target="blank" class="social__item"> 
+						<img src="../assets/img/fb-icon.svg" alt="Facebook">
+					</a>
+					<a href="#" target="blank" class="social__item">
+						<img src="../assets/img/vk-icon.svg" alt="Vkontakte">
+					</a>
+					<a href="#" target="blank" class="social__item">
+						<img src="../assets/img/ok-icon.svg" alt="OK">
+					</a>
+					<a href="#" target="blank" class="social__item">
+						<img src="../assets/img/inst-icon.svg" alt="Instagram">
+					</a>
 				</div>
 			</div>
 		</div>
@@ -55,7 +69,7 @@ export default {
 			+text-style(16px,16px)
 			font-weight: 500
 			color: $red-color
-			padding: 16px 0 18px
+			padding: 17px 0
 			border: 2px solid $red-color
 			border-radius: 56px
 			min-width: 224px
@@ -75,6 +89,7 @@ export default {
 	&__menu
 			margin: 0 0 55px 
 			border-bottom: 4px solid $dusk-color
+			+flex(space-between,flex-start)
 	.header-menu
 		.nav
 			display: flex
@@ -106,7 +121,14 @@ export default {
 				font-weight: 700
 				color: $dusk-color
 		.social
-			background: red
-
+			+flex(flex-start,center)
+			&__title
+				+text-style(20px,27px)
+				font-weight: 700
+				color: $dusk-color
+				margin: 0 48px 0 0
+			&__item
+				&:not(:last-child)
+					margin: 0 16px 0 0
 
 </style>
