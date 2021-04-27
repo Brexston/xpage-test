@@ -9,11 +9,24 @@
 				<a href="#" class="breadcrumbs__item">Новости</a>
 			</div>
 			<div class="news__sorting">
-				<input type="date" class="form-control" id="date" name="date" placeholder="Дата" required>
-				<select>
-					<option>Пункт 1</option>
-					<option>Пункт 2</option>
-				</select>
+				<DatePicker v-model="date">
+					<template v-slot="{ inputValue, inputEvents }">
+						<input
+						class="px-2 py-1 border rounded focus:outline-none focus:border-blue-300"
+						:value="inputValue"
+						v-on="inputEvents"
+						/>
+					</template>
+				</DatePicker>
+
+
+				<dropdown class="my-dropdown-toggle"
+					:options="arrayOfObjects" 
+					:selected="object" 
+					v-on:updateOption="methodToRunOnSelect" 
+					:placeholder="'Select an Item'"
+					:closeOnOutsideClick="boolean">
+				</dropdown>
 			</div>
 			<div class="news__list news-list">
 				<div class="news-list__item">
@@ -108,14 +121,40 @@
 
 <script>
 import Pagination from '@/components/Pagination.vue'
+import dropdown from 'vue-dropdowns';
+import { DatePicker } from 'v-calendar';
 
 export default {
+	data() {
+		return {
+			arrayOfObjects: [
+				{
+					name: 'Медицина',
+
+				},
+				{
+					name: 'Общество',
+				}
+			],
+			object: {
+				name: 'Выбрать рубрику',
+			},
+			date: new Date(),
+		}
+	},
 	name: 'News',
 	props: {
 		title: String
 	},
 	components: {
 		Pagination,
+		'dropdown': dropdown,
+		DatePicker,
+	},
+	methods: {
+		methodToRunOnSelect(payload) {
+		this.object = payload;
+		}
 	}
 }
 </script>
@@ -279,4 +318,15 @@ export default {
 				display: block
 			select
 				margin: 0
+.my-dropdown-toggle
+	border-radius: 5px
+::v-deep .dropdown-toggle
+	color: tomato
+	font-size: 25px
+	font-weight: 800
+
+::v-deep .dropdown-toggle-placeholder 
+	color: #c4c4c4
+
+
 </style>
