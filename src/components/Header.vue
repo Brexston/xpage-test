@@ -7,26 +7,34 @@
 				<div class="header-top__search"></div>
 			</div>
 			<div class="header__menu header-menu">
-				<ul class="header-menu__nav nav">
-					<li class="nav__item">
-						<a class="nav__link" href="#">Новости</a>
-					</li>
-					<li class="nav__item">
-						<a class="nav__link" href="#">Телепроекты</a>
-					</li>
-					<li class="nav__item">
-						<a class="nav__link" href="#">Реклама</a>
-					</li>
-					<li class="nav__item dropdown">
-						<a class="nav__link" href="#">Онлайн</a>
-					</li>
-					<li class="nav__item">
-						<a class="nav__link" href="#">Программа передач</a>
-					</li>
-					<li class="nav__item dropdown">
-						<a class="nav__link" href="#">Еще</a>
-					</li>
-				</ul>
+				<div class="hamburger">
+					<div class="hamburger__item hamburger__item-one"></div>
+					<div class="hamburger__item hamburger__item-two"></div>
+					<div class="hamburger__item hamburger__item-three"></div>
+				</div>
+				<div class="header-menu__nav">
+					<div class="close"></div>
+					<ul class="nav">
+						<li class="nav__item">
+							<a class="nav__link" href="#">Новости</a>
+						</li>
+						<li class="nav__item">
+							<a class="nav__link" href="#">Телепроекты</a>
+						</li>
+						<li class="nav__item">
+							<a class="nav__link" href="#">Реклама</a>
+						</li>
+						<li class="nav__item dropdown">
+							<a class="nav__link" href="#">Онлайн</a>
+						</li>
+						<li class="nav__item">
+							<a class="nav__link" href="#">Программа передач</a>
+						</li>
+						<li class="nav__item dropdown">
+							<a class="nav__link" href="#">Еще</a>
+						</li>
+					</ul>
+				</div>
 				<div class="header-menu__social social">
 					<div class="social__title">Подписывайтесь на нас:</div>
 					<a href="#" target="blank" class="social__item">
@@ -58,7 +66,6 @@ export default {
 </script>
 
 <style lang="sass">
-
 .header
 	padding: 52px 0 0
 	&__top
@@ -130,5 +137,95 @@ export default {
 			&__item
 				&:not(:last-child)
 					margin: 0 16px 0 0
+		.hamburger
+			display: none
 
+
+@media screen and (max-width: 1300px)
+	.header
+		.header-menu
+			.social
+				&__title
+					display: none
+
+@media screen and (max-width: 1024px)
+	.header
+		&__menu
+			align-items: center
+			padding: 0 0 16px
+			margin: 0 0 32px
+		&__top
+			margin: 0 0 24px
+		.header-menu
+			&__nav
+				display: none
+			.hamburger
+				height: 14px
+				width: 16px
+				position: relative
+				display: block
+				&__item
+					width: 16px
+					height: 2px
+					background: $dusk-color
+					position: absolute
+					left: 0
+					+transition
+					&-one
+						top: 0
+					&-two
+						top: 50%
+						transform: translateY(-50%)
+					&-three
+						top: calc(100% - 2px)
+
+			.nav
+				&__item
+					&:not(:last-child)
+						margin: 0 24px 0 0
+@media screen and (max-width: 1024px)
+	.header
+		padding: 24px 0 0
+		&__top
+			flex-direction: column
+		.header-top
+			&__offer
+				+text-style(14px, 16px)
+				min-width: 200px
+			&__phone
+				margin: 16px 0
+				order: 1
+			&__offer
+				order: 2
+		.header-menu
+			.close
+				position: absolute
+				right: 16px
+				top: 16px
+				width: 32px
+				height: 32px
+				z-index: 1
+				&::before, &::after
+					position: absolute
+					left: 15px
+					content: ' '
+					height: 24px
+					width: 2px
+					background-color: $dusk-color
+				&::before
+					transform: rotate(45deg)
+				&::after
+					transform: rotate(-45deg)
+			.nav
+				flex-direction: column
+				position: absolute
+				background: $white-color
+				left: 0
+				top: 0
+				width: 100%
+				height: 100%
+				padding: 40px
+				&__item
+					&:not(:last-child)
+						margin: 0 0 16px
 </style>

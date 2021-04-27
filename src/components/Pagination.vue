@@ -1,10 +1,10 @@
 <template>
 	<div class="pagination">
-		<div class="pagination__prev">
+		<div class="pagination__prev disabled">
 			<img src="../assets/img/next-icon.svg" alt="prev">
 		</div>
 		<div class="pagination__page">
-			<a href="#">1</a>
+			<a class="current" href="#">1</a>
 			<a href="#">2</a>
 			<a href="#">3</a>
 			<a href="#">4</a>
@@ -36,9 +36,19 @@ export default {
 		transform: rotate(180deg)
 	&__prev, &__next
 		+flex(center,center)
-		margin: 0 40px
+		margin: 0 30px
+		&.disabled
+			opacity: 0.7
 	&__page
 		display: flex
+		a
+			+text-style(20px,24px)
+			color: $dusk-color
+			font-weight: bold
+			padding: 0 10px
+			&.current
+				border-bottom: 2px solid $red-color
+				padding: 0 4px
 
 
 </style>

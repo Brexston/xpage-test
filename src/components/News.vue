@@ -5,7 +5,7 @@
 				{{ title }}
 			</div>
 			<div class="news__breadcrumbs breadcrumbs">
-				<a href="#" class="breadcrumbs__item">Главная</a>/
+				<a href="#" class="breadcrumbs__item">Главная</a> /
 				<a href="#" class="breadcrumbs__item">Новости</a>
 			</div>
 			<div class="news__sorting">
@@ -179,6 +179,7 @@ export default {
 		&__img
 			display: block
 			margin: 0 0 35px
+			max-width: 100%
 		&__info
 			display: flex
 			align-items: center
@@ -212,4 +213,70 @@ export default {
 				display: block
 
 
+@media screen and (max-width: 1300px)
+	.news
+		.news-list
+			&__item
+				margin: 0 22px 80px
+			&__title
+			&__img
+				margin: 0 0 16px
+			&__section
+				+text-style(14px)
+			&__info
+				flex-wrap: wrap
+				div
+					margin: 0
+			&__date
+				margin: 0
+
+@media screen and (max-width: 1024px)
+	.news
+		.news-list
+			&__item
+				&.main
+					.news-list
+						&__img
+							max-width: 50%
+			&__title
+				+text-style(16px)
+				margin: 0 0 36px
+				padding: 0
+		&__sorting
+			margin: 0 0 46px
+			input,select
+				width: auto
+
+
+@media screen and (max-width: 767px)
+	.news
+		&__title
+			+text-style(50px,60px)
+		.news-list
+			margin: 0
+			&__item
+				width: 100%
+				margin: 0 0 32px
+				&.main
+					margin: 0
+					flex-direction: column
+					padding: 16px 16px 32px
+					.news-list
+						&__img
+							max-width: 100%
+							margin: 0 0 16px
+						&__title
+							margin: 0 0 16px
+						&__description
+							+text-style(14px)
+						&__сross
+							right: auto
+							bottom: auto
+		&__sorting
+			margin: 0 0 46px
+			input
+				margin: 0 16px 16px 0
+				display: block
+			select
+				margin: 0
 </style>

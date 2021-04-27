@@ -1,21 +1,26 @@
 <template>
-	<Header/>
-	<News title="Все новости"/>
-  <Footer/>
+    <Header/>
+    <NewsItem/>
+    <CommentForm/>
+    <Footer/>
 </template>
+
 
 <script>
 // @ is an alias to /src
 import Header from '@/components/Header.vue'
-import News from '@/components/News.vue'
+import NewsItem from '@/components/NewsItem.vue'
+import CommentForm from '@/components/CommentForm.vue'
 import Footer from '@/components/Footer.vue'
+
 
 
 export default {
   name: 'Home',
   components: {
     Header,
-    News,
+    NewsItem,
+    CommentForm,
     Footer
   }
 }
