@@ -1,16 +1,16 @@
 <template>
 	<div class="news-list__item main">
-					<img class="news-list__img" src="/bg6.png" alt="title">
+					<img class="news-list__img" :src="`${item.imageUrl}`" :alt="selecteditem">
 					<div class="news-list__wrap">
 						<div class="news-list__info">
-							<a class="news-list__section" href="#">Общество</a>
-							<div class="news-list__date">29/01/2021</div>
+							<a v-for="tag of item.tags" :key="tag" v-bind:item="tag" class="news-list__section"  href="#"> {{tag}}</a>
+							<div class="news-list__date">{{item.date}}</div>
 						</div>
-						<a class="news-list__title" href="#">Госпитальная база закрыта, учреждение вернётся в «доковидный» режим после дезинфекции.  Роддом Златоуста вновь откроет свои двери 8 февраля</a>
-						<a class="news-list__description" href="#">Ещё одна главная новость дня — с 8 февраля златоустовский роддом возвращается к привычному формату работы. Госпитальную базу для лечения больных коронавирусной инфекцией переводят...</a>
-						<a class="news-list__сross" href="#" >
+						<router-link :to="{ name: 'newsDetails', params: { id: item.id }}" class="news-list__title">{{item.title}}</router-link>
+						<router-link :to="{ name: 'newsDetails', params: { id: item.id }}" class="news-list__description">{{item.description}}</router-link>
+						<router-link :to="{ name: 'newsDetails', params: { id: item.id }}" class="news-list__сross">
 							<img src="../assets/img/cross-icon.svg" alt="Перейти">
-						</a>
+						</router-link>
 					</div>
 				</div>
 </template>
