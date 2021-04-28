@@ -25,7 +25,8 @@
 					:selected="currentTag" 
 					v-on:updateOption="methodToRunOnSelect" 
 					:placeholder="'Select an Item'"
-					:closeOnOutsideClick="boolean">
+					:closeOnOutsideClick="false"
+					@click.prevent="openDropdown()">
 				</dropdown>
 			</div>
 			<div class="news__list news-list">
@@ -60,7 +61,25 @@ export default {
 				},
 				{
 					name: 'Общество',
-				}
+				},
+				{
+					name: 'Коммуналка',
+				},
+				{
+					name: 'Политика',
+				},
+				{
+					name: 'Спорт',
+				},
+				{
+					name: 'Вектор развития',
+				},
+				{
+					name: 'Медицина',
+				},
+				{
+					name: 'Общество',
+				},
 			],
 			currentTag: {
 				name: 'Выбрать рубрику',
@@ -92,24 +111,24 @@ export default {
 					id: 4,
 					tags: ['Общество'],
 					date: '02/02/2021',
-					title: 'Осторожно, сосульки! Оттепель на этой неделе привела к тому, что на крышах многих домов образовались опасные ледяные наросты',
-					imageUrl: '/bg3.png'
+					title: 'В четыре раза меньше вопросов, чем обычно. В Златоусте прошло первое в 2021-м году Собрание депутатов',
+					imageUrl: '/bg4.png'
 				}
 ,
 				{
 					id: 5,
 					tags: ['Общество'],
 					date: '02/02/2021',
-					title: 'Осторожно, сосульки! Оттепель на этой неделе привела к тому, что на крышах многих домов образовались опасные ледяные наросты',
-					imageUrl: '/bg3.png'
+					title: 'В Златоусте сотрудники теротдела проверят магазин, из которого выбрасывали строительный мусор на контейнерную площадку',
+					imageUrl: '/bg5.png'
 				}
 ,
 				{
 					id: 6,
 					tags: ['Общество'],
 					date: '02/02/2021',
-					title: 'Осторожно, сосульки! Оттепель на этой неделе привела к тому, что на крышах многих домов образовались опасные ледяные наросты',
-					imageUrl: '/bg3.png'
+					title: 'ДЧ: Первое Собрание депутатов 2021 года: планируется работа на весь год',
+					imageUrl: '/bg6.png'
 				}
 ,
 				{
@@ -117,7 +136,7 @@ export default {
 					tags: ['Общество'],
 					date: '02/02/2021',
 					title: 'Осторожно, сосульки! Оттепель на этой неделе привела к тому, что на крышах многих домов образовались опасные ледяные наросты',
-					imageUrl: '/bg3.png'
+					imageUrl: '/bg7.png'
 				}
 
 
@@ -137,7 +156,12 @@ export default {
 	methods: {
 		methodToRunOnSelect(payload) {
 		this.object = payload;
+		},
+		openDropdown() {
+			let dropdown = document.querySelector('.dropdown-toggle')
+			dropdown.classList.toggle('active')
 		}
+		
 	}
 }
 </script>
@@ -161,10 +185,66 @@ export default {
 			color: $telegray-color
 	&__sorting
 		margin: 0 0 83px
+		display: flex
+		flex-wrap: wrap
 		select
 			margin: 0 0 0 50px
+		input
+			background: url(../assets/img/calendar-icon.svg)  24px center no-repeat
+			padding: 3px 28px 0 55px
 		input,select
 			width: 468px
+		.my-dropdown-toggle
+			margin: 0 0 0 50px
+			.dropdown-toggle
+				width: 468px
+				height: 60px
+				display: flex
+				align-items: center
+				border: 2px solid $dusk-color
+				color: $dusk-color
+				padding-left: 24px
+				&:hover
+					background: transparent
+				&.active
+					.caret
+						transform: rotate(180deg)
+				.caret
+					background: url(../assets/img/arrow-icon.svg) center no-repeat
+					width: 11px
+					height: 7px
+					border: 0
+					right: 28px
+					top: 28px
+					+transition
+			.dropdown-menu
+				width: 100%
+				top: 58px
+				border: 2px solid $dusk-color
+				border-radius: 0
+				box-shadow: none
+				background: $grey-color
+				height: 250px
+				overflow: auto
+				& > li >
+					a
+						padding: 8px 30px 8px 24px
+						&:hover
+							background: none
+							color: $red-color
+				&::-webkit-scrollbar
+					width: 4px
+					background-color: $grey-color
+				&::-webkit-scrollbar-thumb
+					background-color: $dusk-color
+				&:-webkit-scrollbar-track
+					-webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.2)
+					background-color: #f9f9fd
+		.vc-container
+			width: 464px
+			height: 353px
+
+
 	.news-list
 		margin: 0 -24.5px
 		display: flex
@@ -268,6 +348,9 @@ export default {
 			margin: 0 0 46px
 			input,select
 				width: auto
+			.my-dropdown-toggle 
+				.dropdown-toggle
+					width: 300px
 
 
 @media screen and (max-width: 767px)
@@ -299,8 +382,11 @@ export default {
 			input
 				margin: 0 16px 16px 0
 				display: block
-			select
+			.my-dropdown-toggle
 				margin: 0
+			.vc-container
+				width: auto
+				height: auto
 .my-dropdown-toggle
 	border-radius: 5px
 ::v-deep .dropdown-toggle

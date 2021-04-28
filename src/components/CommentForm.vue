@@ -46,6 +46,7 @@ export default {
 				border-bottom: 2px solid $white-color
 				padding: 0
 				width: 100%
+				color: $white-color
 				&::placeholder
 					color: $white-color
 			&.first

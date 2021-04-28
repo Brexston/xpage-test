@@ -1,6 +1,6 @@
 <template>
 	<div class="news-list__item">
-		<img :src="`${item.imageUrl}`" :alt="selecteditem">
+		<img class="news-list__img" :src="`${item.imageUrl}`" :alt="selecteditem">
 	
 		<div class="news-list__info">
 			<a v-for="tag of item.tags" :key="tag" v-bind:item="tag" class="news-list__section"  href="#"> {{tag}}</a>

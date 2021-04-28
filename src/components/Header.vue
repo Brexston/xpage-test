@@ -7,13 +7,14 @@
 				<div class="header-top__search"></div>
 			</div>
 			<div class="header__menu header-menu">
-				<div class="hamburger">
+				<div class="hamburger" 
+			@click.prevent="openHamburgerMenu()">
 					<div class="hamburger__item hamburger__item-one"></div>
 					<div class="hamburger__item hamburger__item-two"></div>
 					<div class="hamburger__item hamburger__item-three"></div>
 				</div>
 				<div class="header-menu__nav">
-					<div class="close"></div>
+					<div class="close" @click.prevent="openHamburgerMenu()"></div>
 					<ul class="nav">
 						<li class="nav__item">
 							<a class="nav__link" href="#">Новости</a>
@@ -60,9 +61,16 @@
 
 
 <script>
+
 export default {
-  name: 'Header',
-}
+		name: 'Header',
+		methods: {
+			openHamburgerMenu() {
+				let menu = document.querySelector('.header-menu__nav')
+				menu.classList.toggle('active')
+			}
+		},
+	}
 </script>
 
 <style lang="sass">
@@ -159,6 +167,8 @@ export default {
 		.header-menu
 			&__nav
 				display: none
+				&.active
+					display: block
 			.hamburger
 				height: 14px
 				width: 16px
