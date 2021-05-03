@@ -9,7 +9,8 @@
 				<a href="#" class="breadcrumbs__item">Новости</a>
 			</div>
 			<div class="news__sorting">
-				<DatePicker v-model="date">
+
+				<DatePicker class="datepicker" v-model="date">
 					<template v-slot="{ inputValue, inputEvents }">
 						<input
 						class="px-2 py-1 border rounded focus:outline-none focus:border-blue-300"
@@ -18,7 +19,6 @@
 						/>
 					</template>
 				</DatePicker>
-
 
 				<dropdown class="my-dropdown-toggle"
 					:options="tags" 
@@ -195,6 +195,64 @@ export default {
 			padding: 3px 28px 0 55px
 		input,select
 			width: 468px
+		.datepicker
+			position: relative
+			&::after
+				content: ''
+				width: 11px
+				height: 7px
+				background: url(../assets/img/arrow-icon.svg) center no-repeat
+				position: absolute
+				right: 28px
+				top: 28px
+				+transition
+			&:hover
+				&::after
+					transform: rotate(180deg)
+			.vc-container
+				width: 468px
+				height: 353px
+				border-radius: 0
+				box-shadow: none
+				border: 0
+				.vc-container
+					border: 2px solid $dusk-color
+			.vc-header
+				padding: 20px 16px 24px 16px
+			.vc-popover-caret
+				display: none
+			.vc-popover-content
+				.datepicker
+					&::after
+						content: none
+			.vc-svg-icon
+				path
+					fill: $red-color
+			.vc-arrows-container
+				padding: 16px
+			.vc-weeks
+				padding: 0 16px
+				+text-style(12px,16px)
+				.vc-weekday
+					color: $dusk-color
+					border-bottom: 2px solid $dusk-color
+					margin-bottom: 16px
+				.vc-day
+					color: $dusk-color
+					min-height: 38px
+				.vc-day-content
+					+text-style(12px, 16px)
+					font-weight: 400 !important
+					color: $dusk-color !important
+					&:hover
+						background: none
+						color: $red-color !important
+				.vc-highlight
+					background: transparent !important
+					border: 1px solid $dusk-color
+					
+
+
 		.my-dropdown-toggle
 			margin: 0 0 0 50px
 			.dropdown-toggle
@@ -241,9 +299,7 @@ export default {
 				&:-webkit-scrollbar-track
 					-webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.2)
 					background-color: #f9f9fd
-		.vc-container
-			width: 464px
-			height: 353px
+
 
 
 	.news-list
